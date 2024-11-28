@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
+
 dotenv.config();
 
 const app = express();
@@ -14,11 +15,15 @@ const MONGO_URI = process.env.MONGO_URI;
 
 //Import Routes
 const adminRoutes = require("./routes/adminRoutes")
+const productRoutes = require('./routes/productRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 
 //Middleware
 app.use(cors());
 
 app.use("/api/admin",adminRoutes);
+app.use('/api/products',productRoutes);
+app.use('/api/orders',orderRoutes);
 
 
 //Connect to MongoDB
