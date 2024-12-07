@@ -1,0 +1,17 @@
+.input-field {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.375rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .input-field:focus {
+    border-color: #3182ce;
+  }
+  .bg-card-preview {
+    background-image: url('./card.png'); /* Add your image path here */
+    background-size:cover;
+    background-position: center;
+}

@@ -1,38 +1,22 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const cors = require("cors");
-
-
-dotenv.config();
+const express = require('express');
+const cors = require('cors'); // Import CORS
 
 const app = express();
-app.use(express.json());
 
-//Environment Variables
+// Use CORS middleware
+app.use(cors({
+  origin: 'http://localhost:5173', // Allow requests from your frontend origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the methods allowed
+  credentials: true // Allow credentials if needed
+}));
+
+// Your existing routes and other configurations
+app.get('/products', (req, res) => {
+  // Your logic to fetch products
+  res.json(products); // Example response
+});
+
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI;
-
-//Import Routes
-const adminRoutes = require("./routes/adminRoutes")
-const productRoutes = require('./routes/productRoutes');
-const orderRoutes = require('./routes/orderRoutes');
-
-//Middleware
-app.use(cors());
-
-app.use("/api/admin",adminRoutes);
-app.use('/api/products',productRoutes);
-app.use('/api/orders',orderRoutes);
-
-
-//Connect to MongoDB
-mongoose
-    .connect(MONGO_URI)
-    .then(() => console.log("Connected to MongoDB"))
-    .catch((err) => console.error("Error connecting to MongoDB",err));
-
-//start the server
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
